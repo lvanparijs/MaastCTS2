@@ -8,9 +8,10 @@ import MaastCTS2.heuristics.states.GvgAiEvaluation;
 import MaastCTS2.move_selection.MaxAvgScore;
 import MaastCTS2.playout.NstPlayout;
 import MaastCTS2.selection.ol.ProgressiveHistory;
+import core.game.StateObservation;
 import core.game.StateObservationMulti;
 import core.player.AbstractMultiPlayer;
-import ontology.Types.ACTIONS;
+import ontology.Types;
 import tools.ElapsedCpuTimer;
 
 public class Agent extends AbstractMultiPlayer {
@@ -26,9 +27,9 @@ public class Agent extends AbstractMultiPlayer {
 	 * @param so
 	 * @param elapsedTimer
 	 */
-	public Agent(StateObservationMulti so, ElapsedCpuTimer elapsedTimer, int playerId) {
+	public Agent(StateObservationMulti so, ElapsedCpuTimer elapsedTimer, int playerID) {
 		MctsController.TIME_BUFFER_MILLISEC = 10;
-		myID = playerId;
+		myID = playerID;
 		numPlayers = so.getNoPlayers();
 		otherID = (myID + 1) % numPlayers;
 		
@@ -39,17 +40,23 @@ public class Agent extends AbstractMultiPlayer {
 		controller.init(so, elapsedTimer);
 	}
 
-	@Override
-	public ACTIONS act(StateObservationMulti stateObs, ElapsedCpuTimer elapsedTimer) {
+	public Types.ACTIONS act(StateObservationMulti stateObs, ElapsedCpuTimer elapsedTimer) {
 		Globals.knowledgeBase.update(stateObs);
 		return controller.chooseAction(stateObs, elapsedTimer);
 	}
-	
-	@Override
+
+	public void result(StateObservation stateObservation, ElapsedCpuTimer elapsedCpuTimer)
+	{
+		//System.out.println("MCTS avg iters: " + SingleMCTSPlayer.iters / SingleMCTSPlayer.num);
+		//Include your code here to know how it all ended.
+		//System.out.println("Game over? " + stateObservation.isGameOver());
+	}
+
+	/*@Override
 	public void draw(Graphics2D g){
 		if(Globals.DEBUG_DRAW){
 			Globals.knowledgeBase.draw(g);
 		}
-	}
+	}*/
 
 }

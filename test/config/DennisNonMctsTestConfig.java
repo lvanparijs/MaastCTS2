@@ -1,7 +1,7 @@
 package test.config;
 
-import tools.ElapsedCpuTimer;
 import MaastCTS2.Agent;
+import tools.ElapsedCpuTimer;
 import MaastCTS2.controller.IController;
 import core.competition.CompetitionParameters;
 import core.game.StateObservation;

@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import MaastCTS2.controller.MctsController;
+import core.ArcadeMachine;
 import core.competition.CompetitionParameters;
 import test.config.TestConfig;
 import test.lists.ConfigList;
@@ -14,21 +15,21 @@ public class Main {
 
 	//public static final String gamesPath = "./gridphysics/";
 
-	public static String gamesPath = "D:/Apps/gvg-master-thesis/gvgai-master/examples/gridphysics/";
-	public static String resultsDir = "D:/Apps/gvg-master-thesis/Results/";
+	public static String gamesPath = "C:/Users/i6091912/Desktop/BachelorThesis/gvgai/examples/gridphysics/";
+	public static String resultsDir = "C:/Users/i6091912/Desktop/BachelorThesis/Results/";
 	
 	public static int numLevelRepeats = 5;
 
 	public static void main(String[] args) {
 		
-		CompetitionParameters.IMG_PATH = "D:/Apps/gvg-master-thesis/gvgai-master/sprites/";
+		CompetitionParameters.IMG_PATH = "C:/Users/i6091912/Desktop/BachelorThesis/gvgai/sprites/";
 
 		//String games[] = GameList.getAllGames();
 		
 		//String[] games = {/*"aliens", */"boulderdash"/*, "butterflies", "chase", "missilecommand", "frogs", "portals", 
 		//					"sokoban", "survivezombies", "zelda"*/};
 		
-		String[] games = {"boulderdash"};
+		String[] games = {"pokemon"};
 
 		SimpleDateFormat fileNameFormat = new SimpleDateFormat(
 				"yyyy-MM-dd_HH-mm-ss'.csv'");
@@ -63,7 +64,7 @@ public class Main {
 			
 			// will assume that we're running on the DKE linux cluster if args are given
 			gamesPath = "./examples/gridphysics/";
-			resultsDir = "./results/";
+			resultsDir = "./Results/";
 			CompetitionParameters.IMG_PATH = "./sprites/";
 			MctsController.TIME_BUFFER_MILLISEC = 10;
 			games = allGames[gameSet];
@@ -97,6 +98,10 @@ public class Main {
 		}
 
 	}
+
+	//private static void runOneGameMulti(TestConfig testConfig, String[] games, int gameset, String dateString){
+	//	ArcadeMachine.playOneGameMulti();
+	//}
 
 	private static void runTournament(TestConfig testConfig, String[] games,
 										int gameSet, String dateString) {
