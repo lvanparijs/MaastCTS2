@@ -32,7 +32,7 @@ public class DennisNonMctsTestConfig extends TestConfig {
 			ElapsedCpuTimer ect = new ElapsedCpuTimer(CompetitionParameters.TIMER_TYPE);
 			ect.setMaxTimeMillis(CompetitionParameters.INITIALIZATION_TIME);
 
-			player = new Agent(stateObs, ect.copy(), controller);
+//			player = new Agent(stateObs, ect.copy(), controller);
 
 			// Check if we returned on time, and act in consequence.
 			long timeTaken = ect.elapsedMillis();

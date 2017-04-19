@@ -30,11 +30,16 @@ public class ConfigList {
 		}
 		this._allTests.put(config.getName(), config);
 	}
+
+	private void addLucasImplementations(){
+		//this.addConfig(new );
+	}
 	
 	/**
 	 * Adds agents implemented in 2016 by Dennis Soemers (all others are 2015 implementations by Torsten Schuster)
 	 */
 	private void addDennisImplementations(){
+
 		this.addConfig(new DennisMctsTestConfig("dennisOlUctSelection",
 				new MaastCTS2.selection.ol.OlUctSelection(Math.sqrt(2.0)), 
 				new MaastCTS2.playout.RandomPlayout(10),

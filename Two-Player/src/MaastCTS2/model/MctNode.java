@@ -37,8 +37,8 @@ public class MctNode {
 	/** An integer-representation of the cell in which the avatar was in the last state observation seen in this node */
 	private int lastAvatarCell;
 	
-	private EnumMap<ACTIONS, Double> otherPlayerActionScores;
-	private EnumMap<ACTIONS, Double> otherPlayerNumVisits;
+	public EnumMap<ACTIONS, Double> otherPlayerActionScores;
+	public EnumMap<ACTIONS, Double> otherPlayerNumVisits;
 	public ACTIONS lastSimmedActionOtherPlayer;
 
 	public MctNode() {
@@ -314,4 +314,5 @@ public class MctNode {
 			}
 		}
 	}
+
 }

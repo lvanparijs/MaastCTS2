@@ -49,6 +49,7 @@ public class OlUctSelection implements ISelectionStrategy {
 			Vector2d previousAvatarOrientation = state.getAvatarOrientation(Agent.myID);
 			
 			node = getNextNodeByUct(node);
+			//Do the same for opponent, combine the two moves into the next state
 			
 			stateObs = node.generateNewStateObs(stateObs, node.getActionFromParent());
 			state = stateObs.getStateObsNoCopy();

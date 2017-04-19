@@ -65,13 +65,13 @@ public class DennisMctsTestConfig extends TestConfig {
 			// Determine the time due for the controller creation.
 			ElapsedCpuTimer ect = new ElapsedCpuTimer(CompetitionParameters.TIMER_TYPE);
 			ect.setMaxTimeMillis(CompetitionParameters.INITIALIZATION_TIME);
-
+	/*
 			player = new Agent(stateObs, ect.copy(), selectionStrategy, playoutStrategy, 
 								moveSelectionStrategy, playoutEval, initBreadthFirst,
 								noveltyBasedPruning, exploreLosses, knowledgeBasedEval,
 								detectDeterministicGames, treeReuse, treeReuseGamma,
 								maxNumSafetyChecks, alwaysKB, noTreeReuseBFTI);
-
+			*/
 			// Check if we returned on time, and act in consequence.
 			long timeTaken = ect.elapsedMillis();
 			if (ect.exceededMaxTime()) {
