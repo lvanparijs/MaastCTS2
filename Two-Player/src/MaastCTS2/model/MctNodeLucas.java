@@ -22,6 +22,11 @@ public class MctNodeLucas {
     private double numVisits;
     /** The sum of all the scores that have been backpropagated through this node */
     private double totalScore;
+    
+    private UCTStatistics[] stats;
+    private int numActions = Types.ACTIONS.values().length;
+    private boolean optimistic = false;  
+    
     /** The depth of this node in the current MCTS tree */
     private int depth;
 
@@ -70,10 +75,15 @@ public class MctNodeLucas {
         otherPlayerActionScores = new EnumMap<Types.ACTIONS, Double>(Types.ACTIONS.class);
         otherPlayerNumVisits = new EnumMap<Types.ACTIONS, Double>(Types.ACTIONS.class);
         lastSimmedActionOtherPlayer = Types.ACTIONS.ACTION_NIL;
+        
+        stats = new UCTStatistics[numActions];
+        int curAction = 0;
 
         for(Types.ACTIONS a : Types.ACTIONS.values()){
             otherPlayerActionScores.put(a, 0.0);
             otherPlayerNumVisits.put(a, 0.0);
+            stats[curAction] = new UCTStatistics(a, false);
+            curAction++;
         }
     }
 
