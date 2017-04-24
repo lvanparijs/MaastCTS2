@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import MaastCTS2.controller.MctsController;
 import MaastCTS2.libs.it.unimi.dsi.util.XorShift64StarRandom;
 import MaastCTS2.model.MctNode;
+import MaastCTS2.model.MctNodeLucas;
 import MaastCTS2.utils.OrderedIntPair;
 import core.game.StateObservationMulti;
 import ontology.Types.ACTIONS;
@@ -39,7 +40,7 @@ public class Globals {
 	 */
 	public static ACTIONS[] generateActionArray(ACTIONS myAction, StateObservationMulti state,
 												EnumMap<ACTIONS, Double> otherPlayerActionScores, 
-												EnumMap<ACTIONS, Double> otherPlayerNumVisits, double parentNumVisits, MctNode node){
+												EnumMap<ACTIONS, Double> otherPlayerNumVisits, double parentNumVisits, MctNodeLucas node){
 		ACTIONS[] actions = new ACTIONS[Agent.numPlayers];
 		
 		for(int i = 0; i < actions.length; ++i){
