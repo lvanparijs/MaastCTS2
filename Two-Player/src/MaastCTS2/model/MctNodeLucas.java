@@ -25,7 +25,7 @@ public class MctNodeLucas {
     
     private UCTStatistics[] stats;
     private int numActions = Types.ACTIONS.values().length;
-    private boolean optimistic = false;  
+    public boolean optimistic = false;
     
     /** The depth of this node in the current MCTS tree */
     private int depth;
@@ -78,11 +78,18 @@ public class MctNodeLucas {
         
         stats = new UCTStatistics[numActions];
         int curAction = 0;
+        int playerId;
 
-        for(Types.ACTIONS a : Types.ACTIONS.values()){
+        if(optimistic){
+            playerId = Agent.otherID;
+        }else{
+            playerId = Agent.myID;
+        }
+
+        for(Types.ACTIONS a : stateObs.getAvailableActions(playerId)){
             otherPlayerActionScores.put(a, 0.0);
             otherPlayerNumVisits.put(a, 0.0);
-            stats[curAction] = new UCTStatistics(a, false);
+            stats[curAction] = new UCTStatistics(this , a, 2, playerId);
             curAction++;
         }
     }
@@ -199,7 +206,7 @@ public class MctNodeLucas {
         }
         else{
             StateObservationMulti nextState = previousState.getStateObs();
-            nextState.advance(Globals.generateActionArray(action, nextState, otherPlayerActionScores, otherPlayerNumVisits, numVisits, this));
+            //nextState.advance(Globals.generateActionArray(action, nextState, otherPlayerActionScores, otherPlayerNumVisits, numVisits, this));
             setStateObs(nextState);
             MctsController.NUM_ADVANCE_OPS += 1;
 

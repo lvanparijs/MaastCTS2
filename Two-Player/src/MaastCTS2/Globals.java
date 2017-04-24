@@ -40,7 +40,7 @@ public class Globals {
 	 */
 	public static ACTIONS[] generateActionArray(ACTIONS myAction, StateObservationMulti state,
 												EnumMap<ACTIONS, Double> otherPlayerActionScores, 
-												EnumMap<ACTIONS, Double> otherPlayerNumVisits, double parentNumVisits, MctNodeLucas node){
+												EnumMap<ACTIONS, Double> otherPlayerNumVisits, double parentNumVisits, MctNode node){
 		ACTIONS[] actions = new ACTIONS[Agent.numPlayers];
 		
 		for(int i = 0; i < actions.length; ++i){

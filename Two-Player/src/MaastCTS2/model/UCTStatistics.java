@@ -1,5 +1,7 @@
 package MaastCTS2.model;
 
+import MaastCTS2.Agent;
+import core.game.StateObservationMulti;
 import ontology.Types;
 
 /**
@@ -10,34 +12,55 @@ public class UCTStatistics {
     public double s;
     public double v;
     
-    public boolean terminal
+    public int terminal;
+
+    int pId;
+
+    public MctNodeLucas node;
+
+    public StateObservationMulti state;
 
     public UCTStatistics[] children;
 
+    public UCTStatistics parent;
+
     public Types.ACTIONS action;//The associated action with this statistic
 
-    public UCTStatistics(Types.ACTIONS action, boolean terminal){
-        this(0,0,action,terminal);
+    public UCTStatistics(MctNodeLucas node, Types.ACTIONS action, int terminal, int playerID, UCTStatistics parent){
+        this(0,0,node , action,terminal, playerID, parent);
     }
 
-    public UCTStatistics(double s, double v, Types.ACTIONS action, boolean terminal){
+    public UCTStatistics(double s, double v, MctNodeLucas node,  Types.ACTIONS action, int terminal, int playerID, UCTStatistics parent){
         this.action = action;
         this.s = s;
         this.v = v;
         this.terminal = terminal;
-        
-        if(!terminal) {
+        this.node = node;
+        this.state = node.getStateObs();
+        this.parent = parent;
+
+        if(playerID == 0){
+            pId = 1;
+        }else{
+            pId = 0;
+        }
+
+        if(terminal >= 1) {
             //Creates children if this is not terminal, since I only need 2 layers i can pass in !terminal in the next constructor  
             this.children = new UCTStatistics[Types.ACTIONS.values().length];
             int curIndex = 0;
-            for (Types.ACTIONS a : Types.ACTIONS.values()) {
-                children[curIndex] = new UCTStatistics(a,!terminal);
+            for (Types.ACTIONS a : state.getAvailableActions(playerID)) {
+                children[curIndex] = new UCTStatistics(node, a, terminal--, pId, this);
             }
+        }else{
+            //TODO: This should work according to exploration and stuff
+            //TODO: If terminal get the score and propagate backwards
+            //TODO: Update the scores when the nodes are altered
         }
     }
 
-    public void update(double score){
-
+    public void update(){
+        state = node.getStateObs();
     }
     
     public double getAvgScore(){

@@ -9,6 +9,7 @@ import MaastCTS2.Globals;
 import MaastCTS2.controller.MctsController;
 import MaastCTS2.model.ActionLocation;
 import MaastCTS2.model.MctNode;
+import MaastCTS2.model.MctNodeLucas;
 import MaastCTS2.model.StateObs;
 import MaastCTS2.selection.ISelectionStrategy;
 import core.game.StateObservationMulti;
@@ -107,10 +108,13 @@ public class UCTSelectionMulti implements ISelectionStrategy {
         return bestAction;
     }
 
-    private MctNode getNextNodeByUct(MctNode node) {
+    private MctNode getNextNodeByUct(MctNodeLucas node) {
+        //TODO: use the internal tree structure of the MctNodeLucas to determine the next node by UCT
         MctsController controller = (MctsController) Agent.controller;
         final double MIN_SCORE = controller.MIN_SCORE;
         final double MAX_SCORE = controller.MAX_SCORE;
+
+
 
         double n = node.getNumVisits();
         double log_n = Math.max(0.0, Math.log(n));
